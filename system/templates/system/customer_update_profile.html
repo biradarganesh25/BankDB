@@ -1,0 +1,39 @@
+{% extends 'system/base_form.html' %}
+
+{% block content %}
+
+
+{% if messages %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <p class="text-info text-right lead">
+                {% for message in messages %}
+                <strong>{{ message }}</strong>.
+                {% endfor %}
+
+            </p>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<form method="post" action="{% url 'customer_update_profile' %}">
+    {%csrf_token%}
+    {{ form.as_p}}
+
+
+    <div>
+        <input type="submit" value="submit"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </div>
+</form>
+
+{% endblock %}
+

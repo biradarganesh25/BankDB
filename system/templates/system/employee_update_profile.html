@@ -1,0 +1,16 @@
+{% extends 'system/base_form.html' %}
+
+{% block content %}
+
+<form method="post" action="{% url 'employee_update_profile' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div>
+        <input type="submit" value="submit"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </div>
+</form>
+
+{% endblock %}
+

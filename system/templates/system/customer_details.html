@@ -1,0 +1,234 @@
+{% extends 'system/base_form.html' %}
+{%block content %}
+
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}
+
+<!--
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+-->
+
+{% if messages %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            <p class="text-info text-right lead">
+                {% for message in messages %}
+                <strong>{{ message }}</strong>.
+                {% endfor %}
+
+            </p>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-primary">
+                {{ customer.e_id }}
+            </h3>
+            <div class="btn-group">
+
+                <a href="{% url 'customer_withdraw' %}" class="btn btn-default" role="button">
+                    Withdraw
+                </a>
+
+
+                <a href="{% url 'logout_view' %}" class="btn btn-default" role="button">
+                    Logout
+                </a>
+
+            </div>
+            <dl>
+                <dt>
+                    Your account id is:
+                </dt>
+                <dd>
+                    {{ account.acc_id }}
+                </dd>
+                <dt>
+                    Your amount balance is:
+                </dt>
+                <dd>
+                    {{ account.balance }}
+                </dd>
+                <dt>
+                    Your monthly salary is:
+                </dt>
+                <dd>
+                    {{ customer.salary }}
+                </dd>
+
+            </dl>
+
+            {% if loan %}
+            <dl>
+                <dt>
+                    Your loan amount is:
+                </dt>
+                <dd>
+                    {{ loan.amount_left }}
+                </dd>
+                <dt>
+                    Your next due date:
+                </dt>
+                <dd>
+                    {{ loan.monthly_due_date }}
+                </dd>
+                <dt>
+                    Interest until now:
+                </dt>
+                <dd>
+                    {{ interest_amount }}
+                </dd>
+                <a href="{% url 'repay_loan' %}" class="btn btn-default" role="button">
+                    Repay Loan
+                </a>
+
+
+            </dl>
+            {% else %}
+            <a href="{% url 'apply_loan'%}" class="btn btn-default" role="button">
+                Apply Loan.
+            </a>
+            {% endif %}
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="form-group">
+
+                                <dt>
+                                    Transfer
+                                </dt>
+                                <p class="help-block">
+                                    Enter the user-id and the amount to transfer:
+                                </p>
+                            </div>
+
+                            <form role="form" method="post" action="{% url 'transfer' %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+
+                                    <label for="exampleInputEmail1">
+                                        Email address
+                                    </label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" name="email"/>
+                                </div>
+                                <div class="form-group">
+
+                                    <label for="exampleInputPassword1">
+                                        Amount
+                                    </label>
+                                    <input type="number" class="form-control" id="exampleInputPassword1" name="amount"/>
+                                </div>
+                                <div class="form-group">
+
+
+                                    <button type="submit" class="btn btn-default">
+                                        Transfer
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="{% url 'customer_update_profile' %}" class="btn btn-default" role="button">
+                Update profile.
+            </a>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+<!--
+
+    <p>Your account id is:</p>
+    <p>{{ account.acc_id }}</p>
+    <p>Your account balance is:</p>
+    <p>{{ account.balance }}</p>
+        <p><a href="{% url 'customer_deposit_withdraw' 'deposit' %}">Deposit</a> </p>
+    <p><a href="{% url 'customer_deposit_withdraw' 'withdraw' %}">Withdraw</a> </p>
+
+
+    {% if loan %}
+        <p>Amount to be repaid for your loan:</p>
+        <p>{{ loan.amount_left }}</p>
+        <p>Interest until now:</p>
+        <p>{{ interest_amount }} </p>
+        <p>Next due date:</p>
+        <p>{{ loan.monthly_due_date }}</p>
+        <p><a href="{% url 'repay_loan' %}">Repay loan.</a> </p>
+
+    {% else %}
+        <p><a href="{% url 'apply_loan' %}">Apply loan</a> </p>
+    {% endif %}
+
+    <p>Transfer:</p>
+    <form method="post" action="{% url 'transfer' %}">
+        {% csrf_token %}
+        User:<br>
+        <input type="email" name="email">
+        <br>
+        Amount:<br>
+        <input type="number" name="amount" value="0">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+
+
+
+
+
+
+
+
+<p><a href="{% url 'logout_view' %}">Logout</a></p>
+
+-->
+
+

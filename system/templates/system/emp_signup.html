@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<form method="post" action="{% url 'employee_reg_login' 'emp_reg'%}">
+    {% csrf_token %}
+
+    {{ form.errors }}
+    {{ form.non_field_errors }}
+    {{form.as_p}}
+
+
+    <div>
+        <input type="submit" value="submit"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </div>
+</form>
+
+<p><a href="{% url 'index' %}">Take me back to home.</a></p>
+
+</body>
+</html>

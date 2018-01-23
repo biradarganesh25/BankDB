@@ -1,0 +1,10 @@
+{% extends 'system/base_form.html' %}
+
+{%block content %}
+
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}
+<a href="{% url 'index' %}">Home</a>
+
+{% endblock %}

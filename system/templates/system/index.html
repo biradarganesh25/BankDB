@@ -1,0 +1,18 @@
+{% extends 'system/base_form.html' %}
+
+{%block content%}
+{% if error %}
+<p>{{ error }}</p>
+{% endif %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<li><a href="{%url 'customer_login'  %} ">Customer</a></li>
+<li><a href="{%url 'employee_reg_login' 'emp_login' %}">Employee</a></li>
+{% endblock %}

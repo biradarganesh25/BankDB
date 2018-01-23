@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Details</title>
+</head>
+<body>
+<p>{{emp.name}}</p>
+<p>The customers registered by you are:</p>
+{% for customer in customers %}
+<li>{{customer.e_id}}</li>
+<a href="{% url 'delete_customer' customer_email=customer.e_id %}" onclick="return confirm('Are you sure?')">Delete
+    customer</a>
+<a href="{% url 'customer_deposit' customer_email=customer.e_id %}">
+    Deposit
+</a>
+<a href="{% url 'customer_update_salary' customer_email=customer.e_id%}">Update Salary</a>
+{% endfor %}
+
+{% if defaulters %}
+<p>Defaulters are:</p>
+{% for member in defaulters %}
+<li>{{ member.username }}</li>
+<a href="{% url 'renew' customer_email=member.username%}" onclick="return confirm('Are you sure?)">Renew customer</a>
+
+{% endfor %}
+
+{% endif %}
+
+
+<p><a href="{% url 'logout_view' %}">Logout</a></p>
+<p><a href="{% url 'customer_register'%}">Register Customer</a></p>
+<p><a href="{% url 'employee_update_profile' %}">Update profile</a></p>
+
+</body>
+</html>

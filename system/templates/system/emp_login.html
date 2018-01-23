@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form method="post" action="{% url 'employee_reg_login' 'emp_login'%}">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <div>
+        <input type="submit" value="login"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </div>
+</form>
+
+<p><a href="{% url 'employee_reg_login' 'emp_reg'%}">Register</a></p>
+<p><a href="{% url 'index' %}">Home.</a></p>
+
+</body>
+</html>

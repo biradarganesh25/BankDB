@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<form method="post" action="{% url 'employee_reg_login' 'emp_login'%}">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <div>
+        <input type="submit" value="login"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </div>
+</form>
+
+</body>
+</html>
